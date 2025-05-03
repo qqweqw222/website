@@ -355,7 +355,8 @@ main section:first-child {
     }
 
     .nav-links ul {
-        gap: calc(var(--spacing-unit) * 2);
+        gap: calc(var(--spacing-unit) * 1.5); /* Reduced gap */
+        flex-wrap: wrap; /* Allow wrapping just in case */
     }
 
     .intro-section {
@@ -394,6 +395,55 @@ main section:first-child {
 
      main section {
         padding: calc(var(--spacing-unit) * 6) 0;
+    }
+
+    .personality-layout-grid {
+        grid-template-columns: 1fr; /* Stack to single column */
+        grid-template-areas:
+            "coffee"
+            "photo"
+            "language"
+            "music"; /* Updated grid area */
+        gap: calc(var(--spacing-unit) * 3);
+    }
+
+    .layout-item {
+        padding: calc(var(--spacing-unit) * 2.5);
+    }
+
+    /* Stack Coffee text/map */
+    .coffee-map-container {
+        flex-direction: column;
+        background-color: #FFFBF5; /* Apply background to container now */
+        border-radius: var(--border-radius); /* Apply radius to container */
+    }
+    .coffee-text {
+        border-radius: 0; /* Remove specific radius */
+    }
+    .coffee-map {
+        flex-basis: auto; /* Reset basis */
+        min-height: 250px; /* Ensure some height */
+        border-radius: 0; /* Remove specific radius */
+        width: 100%; /* Full width */
+    }
+
+    /* Stack Music text/image */
+    .indie-music-item {
+        flex-direction: column;
+        align-items: center; /* Center items when stacked */
+    }
+    .music-text-content {
+        width: 100%; /* Take full width */
+        text-align: center; /* Center text */
+    }
+    .music-image-content {
+        flex-basis: auto; /* Reset basis */
+        width: 70%; /* Adjust width for stacked view */
+        max-width: 250px; /* Limit max width */
+        margin-top: var(--spacing-unit) * 2; /* Add space above image */
+    }
+    .band-list-ordered {
+        text-align: left; /* Keep list text left-aligned */
     }
 }
 
@@ -747,7 +797,7 @@ main section:first-child {
             "coffee"
             "photo"
             "language"
-            "personal";
+            "music";
         gap: calc(var(--spacing-unit) * 3);
     }
 
