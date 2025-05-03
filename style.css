@@ -1,0 +1,1024 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --color-background: #FAF7F2; /* Warm Off-White */
+    --color-text: #333333; /* Dark Gray for readability */
+    --color-text-muted: #757575; /* Soft Gray */
+    --color-accent: #A0522D; /* Coffee Brown (Sienna) */
+    --color-accent-light: #D2B48C; /* Lighter Tan/Coffee for hover/subtle elements */
+    --color-border: #EAEAEA; /* Light border color */
+
+    /* Fonts */
+    --font-primary: 'Inter', sans-serif;
+
+    /* Layout & Spacing */
+    --container-width: 1140px;
+    --spacing-unit: 8px;
+    --border-radius: 6px;
+    --transition-speed: 0.25s;
+}
+
+/* --- CSS Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 80px; /* Add padding to prevent content overlap (adjust value as needed) */
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--color-text);
+}
+
+/* --- Base Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--color-text);
+}
+
+h1 {
+    font-size: 2.5rem; /* Example size, adjust as needed */
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-top: calc(var(--spacing-unit) * 6); /* Space above section titles */
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-top: calc(var(--spacing-unit) * 4);
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+}
+
+p {
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--color-text-muted); /* Use muted for paragraphs by default */
+}
+p strong {
+    color: var(--color-text); /* Make strong text less muted */
+    font-weight: 500;
+}
+
+/* --- Layout --- */
+.container {
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: calc(var(--spacing-unit) * 3);
+    padding-right: calc(var(--spacing-unit) * 3);
+}
+
+/* --- Header / Navigation --- */
+.main-header {
+    padding: calc(var(--spacing-unit) * 1.5) 0; /* Reduced vertical padding slightly */
+    position: fixed; /* Fix header to viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(250, 247, 242, 0.9); /* Use background color with alpha */
+    backdrop-filter: blur(8px); /* Optional: Add blur effect */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100; /* Ensure header is above other content */
+    border-bottom: 1px solid var(--color-border); /* Add subtle border */
+    transition: padding 0.2s ease; /* Smooth padding transition if needed */
+}
+
+/* Optional: Shrink header slightly on scroll down - requires JS */
+/* body.scrolled .main-header { padding: calc(var(--spacing-unit) * 1) 0; } */
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+/* Simple Logo Idea - replace with yours */
+.logo .logo-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-right: var(--spacing-unit);
+    vertical-align: middle;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: calc(var(--spacing-unit) * 3);
+}
+
+.nav-links a {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: calc(var(--spacing-unit) * 0.5) 0; /* Add padding for easier clicking */
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width var(--transition-speed) ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-text);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* --- Intro Section (Hero) --- */
+.intro-section {
+    padding: calc(var(--spacing-unit) * 10) 0; /* Generous padding */
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.intro-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 6);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.intro-text {
+    flex: 1; /* Allow text to take available space */
+    min-width: 300px; /* Prevent text from getting too squished */
+}
+
+.intro-text .wave {
+    font-size: 2.5rem; /* Style the waving hand emoji */
+    display: inline-block;
+    margin-right: var(--spacing-unit);
+    animation: wave-animation 2s infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }
+  100% { transform: rotate( 0.0deg) }
+}
+
+.intro-text h1 {
+    font-size: 3rem; /* Large headline */
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.intro-keywords {
+    margin-top: calc(var(--spacing-unit) * 3);
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+}
+
+.keyword-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1.5);
+    background-color: rgba(160, 82, 45, 0.1); /* Light coffee background */
+    color: var(--color-accent);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+}
+
+.keyword-tag:hover {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    transform: translateY(-2px);
+}
+
+.intro-cta {
+    margin-top: calc(var(--spacing-unit) * 4);
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    text-align: center;
+    transition: all var(--transition-speed) ease;
+    border: 1px solid var(--color-accent);
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent-light);
+    border-color: var(--color-accent-light);
+    color: var(--color-text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(160, 82, 45, 0.05); /* Very subtle coffee background */
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.intro-visual {
+    flex-basis: 40%; /* Visual takes up roughly 40% */
+    max-width: 450px; /* Max width for the visual */
+    min-width: 280px;
+    /* Add placeholder styling */
+    aspect-ratio: 1 / 1; /* Make it square */
+    background-color: var(--color-border); /* Placeholder background */
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    color: var(--color-text-muted);
+}
+
+/* --- General Section Styling --- */
+main section {
+    padding: calc(var(--spacing-unit) * 8) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+main section:first-child {
+    border-top: none;
+}
+
+/* --- Footer --- */
+.main-footer {
+    padding: calc(var(--spacing-unit) * 4) 0;
+    margin-top: calc(var(--spacing-unit) * 8);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    h1 { font-size: 2.5rem; }
+    .intro-text h1 { font-size: 2.5rem; }
+
+    /* Stack Experience Columns earlier */
+    .experience-columns {
+        flex-direction: column;
+        gap: calc(var(--spacing-unit) * 5); /* Adjust gap for stacked view */
+    }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: calc(var(--spacing-unit) * 2);
+    }
+
+    .nav-links ul {
+        gap: calc(var(--spacing-unit) * 2);
+    }
+
+    .intro-section {
+        padding: calc(var(--spacing-unit) * 6) 0;
+        text-align: center;
+    }
+
+    .intro-content {
+        flex-direction: column-reverse; /* Stack visual on top */
+        gap: calc(var(--spacing-unit) * 4);
+    }
+
+    .intro-text {
+        flex-basis: auto;
+    }
+
+    .intro-keywords {
+        justify-content: center;
+    }
+
+    .intro-cta {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .intro-visual {
+        flex-basis: auto;
+        width: 80%; /* Make visual wider when stacked */
+        max-width: 350px;
+    }
+
+     h1 { font-size: 2.2rem; }
+     .intro-text h1 { font-size: 2.2rem; }
+     h2 { font-size: 1.6rem; }
+     h3 { font-size: 1.15rem; }
+
+     main section {
+        padding: calc(var(--spacing-unit) * 6) 0;
+    }
+}
+
+/* --- Utility Classes --- */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--color-text-muted) !important;
+}
+
+/* --- Belief Section Specific Styles --- */
+.belief-list {
+    /* Optional: Add styling to the container if needed */
+    margin-top: calc(var(--spacing-unit) * 4);
+}
+
+.belief-point {
+    font-size: 1.1rem; /* Slightly larger than standard paragraph */
+    line-height: 1.8; /* More spacing between lines */
+    margin-bottom: calc(var(--spacing-unit) * 3); /* More space between points */
+    padding-left: calc(var(--spacing-unit) * 3); /* Indent slightly */
+    border-left: 3px solid var(--color-accent-light); /* Subtle accent border */
+    color: var(--color-text); /* Use main text color, not muted */
+}
+
+.belief-point strong {
+    font-weight: 600; /* Make the bolded part stand out more */
+    color: var(--color-text); /* Ensure it's not muted */
+}
+
+/* --- Experience Timeline Columns --- */
+.experience-columns {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 8); /* Gap between columns */
+    margin-top: calc(var(--spacing-unit) * 4);
+}
+
+.experience-column {
+    flex: 1; /* Each column takes equal space */
+    min-width: 0; /* Prevent flex items from overflowing */
+}
+
+.experience-column h3 {
+    font-size: 1.4rem; /* Slightly larger than timeline title */
+    margin-top: 0; /* Remove default top margin for column titles */
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    padding-bottom: var(--spacing-unit);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* --- Experience Timeline (Adjusted for Columns) --- */
+.timeline {
+    position: relative;
+    margin-top: 0;
+    padding-left: calc(var(--spacing-unit) * 5); /* Space for the line and dots */
+}
+
+/* The vertical line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--spacing-unit) * 1.5); /* Position line */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: calc(var(--spacing-unit) * 5); /* Space between items */
+    padding-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* The circle marker */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--spacing-unit) * -3.5); /* Position dot relative to padding */
+    top: 4px; /* Align with text */
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-accent-light);
+    border: 2px solid var(--color-background); /* Match background to punch out */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-date {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+.timeline-company {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-unit);
+}
+
+.timeline-description p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.timeline-description p:not(:last-child) {
+    margin-bottom: var(--spacing-unit);
+}
+
+/* --- Thinking in Progress Grid --- */
+.thinking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: calc(var(--spacing-unit) * 3);
+    margin-top: calc(var(--spacing-unit) * 5);
+}
+
+.thinking-block {
+    display: block;
+    background-color: #ffffff; /* White background for blocks */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    text-decoration: none; /* Remove underline from link */
+}
+
+.thinking-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.thinking-image {
+    height: 180px; /* Fixed height for images */
+    background-color: var(--color-border); /* Placeholder bg */
+    background-size: cover;
+    background-position: center;
+    /* Add specific placeholder styles */
+}
+.thinking-image.placeholder-1 { background-color: #e0e7ff; } /* Example placeholder colors */
+.thinking-image.placeholder-2 { background-color: #f3e8ff; }
+.thinking-image.placeholder-3 { background-color: #ffe4e6; }
+
+.thinking-content {
+    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2.5);
+}
+
+.thinking-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 0;
+    margin-bottom: var(--spacing-unit);
+    line-height: 1.4;
+}
+
+.coming-soon {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Who I Am Section - Asymmetrical Grid Layout --- */
+.personality-layout-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-areas:
+        "coffee coffee"   /* Coffee/Map spans top row */
+        "photo language" /* Photo left, Language right */
+        "music music"; /* Music spans bottom row */
+    gap: calc(var(--spacing-unit) * 4);
+    margin-top: calc(var(--spacing-unit) * 5);
+}
+
+.layout-item {
+    padding: calc(var(--spacing-unit) * 3);
+    border-radius: var(--border-radius);
+    background-color: #FFFBF5; /* Apply default light coffee tint to all */
+    min-height: 150px; /* Ensure items have some min height */
+    position: relative; /* Needed for absolute positioning inside if any */
+    overflow: hidden; /* Hide overflow from animations */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Apply transition to all layout items */
+}
+
+.layout-item:hover {
+    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 5px 12px rgba(0,0,0,0.07); /* Subtle shadow */
+}
+
+/* Assign grid areas */
+.coffee-item { grid-area: coffee; padding: 0; } /* Remove padding from container */
+.photo-item { grid-area: photo; }
+.language-item { 
+    grid-area: language; 
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-start; /* Align content to top */
+}
+.indie-music-item { 
+    grid-area: music; 
+    display: flex; /* Enable flexbox */
+    gap: calc(var(--spacing-unit) * 4); /* Increased gap slightly */
+    align-items: flex-start; /* Align items to top again */
+    padding: calc(var(--spacing-unit) * 3); /* Re-add padding since it's a layout item */
+    background-color: #FFFBF5; /* Ensure background color */
+    border-radius: var(--border-radius); /* Ensure border radius */
+}
+
+.music-text-content {
+    flex: 1; /* Allow text content to take remaining space */
+}
+
+.music-image-content {
+    flex-basis: 45%; /* Increased basis significantly */
+    /* max-width: 280px; Removed max-width for now */
+    margin-top: 0; /* Keep removed top margin */
+}
+
+.cello-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    display: block;
+}
+
+/* Coffee Item Internal Layout */
+.coffee-map-container {
+    display: flex;
+    background-color: transparent; /* Remove background from container */
+}
+
+.coffee-text {
+    flex: 1; /* Text takes up available space */
+    padding: calc(var(--spacing-unit) * 3); /* Add padding back to text */
+    background-color: #FFFBF5; /* Apply bg to text part */
+    border-radius: var(--border-radius) 0 0 var(--border-radius); /* Round left corners */
+}
+
+.coffee-map {
+    flex-basis: 40%; /* Map takes ~40% width */
+    min-width: 250px;
+    height: auto; /* Let height be determined by content/aspect ratio */
+    min-height: 350px; /* Ensure map has decent height */
+    border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Round right corners */
+    overflow: hidden; /* Clip map to rounded corners */
+    z-index: 0;
+}
+
+.layout-item h3 {
+    font-size: 1.3rem; /* Slightly larger headings */
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-unit) * 2.5);
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.layout-item p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-unit) * 1.5;
+}
+
+.layout-item p strong {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.subtle-heading {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-unit);
+    display: block; /* Ensure it takes its own line */
+}
+
+/* Tag List Style (Used for Coffee Shops) */
+.tag-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-unit);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+}
+
+.tag-list li a {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1.5);
+    background-color: rgba(160, 82, 45, 0.1); /* Light coffee bg */
+    color: var(--color-accent);
+    border-radius: var(--border-radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+}
+
+.tag-list li a:hover {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    transform: translateY(-1px);
+}
+
+/* Language List Style */
+.language-list {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: var(--spacing-unit) 0;
+    color: var(--color-text-muted);
+}
+
+.language-list li {
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    font-size: 0.95rem;
+}
+
+/* --- Responsive Adjustments for Personality Grid --- */
+@media (max-width: 992px) {
+    .personality-layout-grid {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
+        grid-template-areas:
+            "coffee coffee"   /* Coffee spans full width */
+            "photo language"  /* Photo and Language side-by-side */
+            "personal personal";/* Personal spans full width */
+    }
+}
+
+@media (max-width: 768px) {
+    .personality-layout-grid {
+        grid-template-columns: 1fr; /* Stack to single column */
+        grid-template-areas:
+            "coffee"
+            "photo"
+            "language"
+            "personal";
+        gap: calc(var(--spacing-unit) * 3);
+    }
+
+    .layout-item {
+        padding: calc(var(--spacing-unit) * 2.5);
+    }
+}
+
+/* Keep existing responsive adjustments */
+@media (max-width: 992px) {
+    h1 { font-size: 2.5rem; }
+}
+
+/* Photo Slider Styles */
+.photo-slider-container {
+    position: relative; /* For positioning buttons */
+    margin-top: calc(var(--spacing-unit) * 2);
+    overflow: hidden; /* Optional: if image transitions are added */
+    border-radius: var(--border-radius);
+}
+
+.slider-image {
+    display: block;
+    width: 100%;
+    max-height: 400px; /* Limit height */
+    object-fit: cover; /* Cover the area */
+    border-radius: var(--border-radius);
+    cursor: pointer; /* Indicate clickable for modal */
+    transition: opacity 0.3s ease; /* For fade effect if needed */
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
+    border-radius: 50%; /* Circle buttons */
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.slider-btn.prev {
+    left: var(--spacing-unit);
+}
+
+.slider-btn.next {
+    right: var(--spacing-unit);
+}
+
+/* Photo Modal Styles */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark overlay */
+    z-index: 1000; /* Ensure it's on top */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#modal-image {
+    display: block;
+    max-width: 100%;
+    max-height: 90vh; /* Limit image height */
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+}
+.modal-close:hover {
+    color: #ccc;
+}
+
+.layout-item h3 {
+    font-size: 1.3rem; /* Slightly larger headings */
+}
+
+.lang-tag {
+    display: inline-block; /* Needed for padding/margin */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em; /* Slightly smaller than surrounding text */
+    font-weight: 500;
+    margin: 0 4px 4px 0; /* Added right and bottom margin */
+    color: var(--color-text); /* Default text color */
+    white-space: nowrap; /* Prevent tags from breaking internally */
+}
+
+/* --- Contact Section Links --- */
+.contact-links {
+    margin-top: calc(var(--spacing-unit) * 4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+.contact-link-button {
+    display: inline-flex; /* Use flex to align icon/text if added later */
+    align-items: center;
+    gap: var(--spacing-unit);
+    padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
+    border: 1px solid var(--color-border);
+    background-color: #ffffff;
+    color: var(--color-text-muted);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.contact-link-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-color: var(--color-accent-light);
+    color: var(--color-accent);
+    background-color: #fffbf5; /* Subtle coffee tint on hover */
+}
+
+/* Optional: Add specific hover colors if desired */
+/*
+.contact-link-button.linkedin:hover { ... }
+.contact-link-button.github:hover { ... }
+.contact-link-button.email:hover { ... }
+*/
+
+.lang-tag.lang-hak { background-color: #f3e8ff; } /* Light purple */
+
+/* Simple Background Animation */
+.animated-background {
+    width: 100%;
+    flex-grow: 1; /* Allow it to take remaining space */
+    min-height: 100px; /* Keep a minimum height */
+    background: linear-gradient(-45deg, #FFFBF5, #fdf1e7, #FAF7F2, #f5f1fc);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin-top: auto; /* Push to bottom or use calc(var(--spacing-unit) * 2) for spacing */
+    border-radius: var(--border-radius); /* Add border radius */
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Adjust line height for paragraph containing language tags */
+.languages-paragraph {
+    line-height: 2.0; /* Increase line height */
+}
+
+/* Specific language colors (adjust as desired) */
+.lang-tag.lang-en { background-color: #e0f2fe; } /* Light blue */
+.lang-tag.lang-zh { background-color: #fee2e2; } /* Light red */
+.lang-tag.lang-ms { background-color: #dcfce7; } /* Light green */
+.lang-tag.lang-yue { background-color: #fef3c7; } /* Light yellow */
+.lang-tag.lang-hak { background-color: #f3e8ff; } /* Light purple */
+
+/* Modal Navigation Buttons */
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    font-size: 2rem; /* Larger font size for modal nav */
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    line-height: 1;
+    width: 50px; /* Slightly larger buttons */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1010; /* Above modal image, below close button */
+    opacity: 0.7;
+}
+
+.modal-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+}
+
+.modal-nav-btn.prev {
+    left: calc(var(--spacing-unit) * 2); /* Position inside modal */
+}
+
+.modal-nav-btn.next {
+    right: calc(var(--spacing-unit) * 2); /* Position inside modal */
+}
+
+/* Creative Ordered List Styling */
+.band-list-ordered {
+    list-style: none; /* Remove default numbers */
+    counter-reset: band-counter; /* Start a counter */
+    padding-left: 0; /* Remove default padding */
+    margin-top: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.band-list-ordered li {
+    counter-increment: band-counter; /* Increment the counter for each item */
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    position: relative;
+    padding-left: calc(var(--spacing-unit) * 4); /* Space for the custom number */
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.band-list-ordered li::before {
+    content: counter(band-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-background);
+    background-color: var(--color-accent-light);
+    border-radius: 50%;
+    width: calc(var(--spacing-unit) * 2.5);
+    height: calc(var(--spacing-unit) * 2.5);
+    line-height: calc(var(--spacing-unit) * 2.5);
+    text-align: center;
+    display: inline-block;
+}
