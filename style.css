@@ -1,21 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
 :root {
     /* Colors */
-    --color-background: #FAF7F2; /* Warm Off-White */
-    --color-text: #333333; /* Dark Gray for readability */
-    --color-text-muted: #757575; /* Soft Gray */
-    --color-accent: #A0522D; /* Coffee Brown (Sienna) */
-    --color-accent-light: #D2B48C; /* Lighter Tan/Coffee for hover/subtle elements */
-    --color-border: #EAEAEA; /* Light border color */
-
+    --color-background: #F9F6F2; /* Slightly warmer off-white */
+    --color-text: #2A2A2A; /* Deeper, richer black */
+    --color-text-muted: #646464; /* Warmer gray for soft text */
+    --color-accent: #915C38; /* Rich, deeper coffee tone */
+    --color-accent-secondary: #C18D58; /* Warmer secondary tone */
+    --color-accent-light: #D9C2A7; /* Softer highlight tone */
+    --color-border: #E8E1D6; /* Warmer border color */
+    --color-subtle-bg: #F5F1E9; /* Subtle background for highlights */
+    
+    /* Gradients */
+    --gradient-subtle: linear-gradient(135deg, var(--color-background) 0%, var(--color-subtle-bg) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(45, 35, 25, 0.05);
+    --shadow-md: 0 4px 12px rgba(45, 35, 25, 0.08);
+    --shadow-lg: 0 8px 24px rgba(45, 35, 25, 0.1);
+    
     /* Fonts */
     --font-primary: 'Inter', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
 
     /* Layout & Spacing */
     --container-width: 1140px;
     --spacing-unit: 8px;
-    --border-radius: 6px;
+    --border-radius-sm: 4px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
     --transition-speed: 0.25s;
 }
 
@@ -63,36 +81,56 @@ a:hover {
 
 /* --- Base Typography --- */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+    font-family: var(--font-display);
     line-height: 1.3;
     margin-bottom: calc(var(--spacing-unit) * 2);
     color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
 }
 
 h1 {
-    font-size: 2.5rem; /* Example size, adjust as needed */
-    font-weight: 700;
+    font-size: 2.75rem; /* Larger size */
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em; /* Slightly tighter tracking */
 }
 
 h2 {
-    font-size: 1.75rem;
-    margin-top: calc(var(--spacing-unit) * 6); /* Space above section titles */
+    font-size: 2rem;
+    margin-top: calc(var(--spacing-unit) * 6); 
     margin-bottom: calc(var(--spacing-unit) * 3);
+    letter-spacing: -0.01em;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent-light);
+    margin-top: calc(var(--spacing-unit) * 1.5);
 }
 
 h3 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-top: calc(var(--spacing-unit) * 4);
     margin-bottom: calc(var(--spacing-unit) * 1.5);
 }
 
 p {
     margin-bottom: calc(var(--spacing-unit) * 2);
-    color: var(--color-text-muted); /* Use muted for paragraphs by default */
+    color: var(--color-text-muted); 
+    line-height: 1.8; /* Increased line height for readability */
 }
+
 p strong {
-    color: var(--color-text); /* Make strong text less muted */
-    font-weight: 500;
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Selection styling */
+::selection {
+    background-color: var(--color-accent-light);
+    color: var(--color-text);
 }
 
 /* --- Layout --- */
@@ -106,21 +144,24 @@ p strong {
 
 /* --- Header / Navigation --- */
 .main-header {
-    padding: calc(var(--spacing-unit) * 1.5) 0; /* Reduced vertical padding slightly */
-    position: fixed; /* Fix header to viewport */
+    padding: calc(var(--spacing-unit) * 1.5) 0; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(250, 247, 242, 0.9); /* Use background color with alpha */
-    backdrop-filter: blur(8px); /* Optional: Add blur effect */
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 100; /* Ensure header is above other content */
-    border-bottom: 1px solid var(--color-border); /* Add subtle border */
-    transition: padding 0.2s ease; /* Smooth padding transition if needed */
+    background-color: rgba(249, 246, 242, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(224, 218, 211, 0.7);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
-/* Optional: Shrink header slightly on scroll down - requires JS */
-/* body.scrolled .main-header { padding: calc(var(--spacing-unit) * 1) 0; } */
+.main-header.scrolled {
+    padding: calc(var(--spacing-unit) * 1) 0;
+    box-shadow: var(--shadow-md);
+}
 
 .main-nav {
     display: flex;
@@ -129,25 +170,30 @@ p strong {
 }
 
 .logo a {
-    font-weight: 600;
-    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.3rem;
     color: var(--color-text);
     text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
-/* Simple Logo Idea - replace with yours */
+
 .logo .logo-icon {
     display: inline-block;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
     border-radius: 50%;
-    background-color: var(--color-accent);
-    color: var(--color-background);
-    font-weight: 700;
-    font-size: 0.9rem;
+    background: var(--gradient-accent);
+    color: #FFF;
+    font-weight: var(--font-weight-bold);
+    font-size: 0.95rem;
     margin-right: var(--spacing-unit);
     vertical-align: middle;
+    box-shadow: var(--shadow-sm);
 }
 
 .nav-links ul {
@@ -158,11 +204,12 @@ p strong {
 
 .nav-links a {
     color: var(--color-text-muted);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     font-size: 0.95rem;
-    padding: calc(var(--spacing-unit) * 0.5) 0; /* Add padding for easier clicking */
+    padding: calc(var(--spacing-unit) * 0.5) 0;
     position: relative;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .nav-links a::after {
@@ -172,26 +219,43 @@ p strong {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: var(--color-accent);
-    transition: width var(--transition-speed) ease;
+    background: var(--gradient-accent);
+    transition: width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--color-text);
+    color: var(--color-accent);
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
     width: 100%;
+    opacity: 1;
 }
 
 /* --- Intro Section (Hero) --- */
 .intro-section {
-    padding: calc(var(--spacing-unit) * 10) 0; /* Generous padding */
-    min-height: 70vh;
+    padding: calc(var(--spacing-unit) * 12) 0; /* More generous padding */
+    min-height: 75vh;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--gradient-subtle);
+}
+
+.intro-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background-image: radial-gradient(circle at 70% 30%, var(--color-subtle-bg) 0%, transparent 70%);
+    opacity: 0.7;
+    z-index: 0;
 }
 
 .intro-content {
@@ -200,6 +264,8 @@ p strong {
     align-items: center;
     gap: calc(var(--spacing-unit) * 6);
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    position: relative;
+    z-index: 1;
 }
 
 .intro-text {
@@ -227,14 +293,26 @@ p strong {
 }
 
 .intro-text h1 {
-    font-size: 3rem; /* Large headline */
-    margin-bottom: calc(var(--spacing-unit) * 3);
+    font-size: 3.25rem; /* Larger headline */
+    margin-bottom: calc(var(--spacing-unit) * 4);
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
+    position: relative;
+}
+
+.intro-text h1::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
 }
 
 .intro-keywords {
-    margin-top: calc(var(--spacing-unit) * 3);
+    margin-top: calc(var(--spacing-unit) * 4);
     margin-bottom: calc(var(--spacing-unit) * 4);
     display: flex;
     flex-wrap: wrap;
@@ -244,18 +322,22 @@ p strong {
 .keyword-tag {
     display: inline-block;
     font-size: 0.85rem;
-    font-weight: 500;
-    padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1.5);
-    background-color: rgba(160, 82, 45, 0.1); /* Light coffee background */
+    font-weight: var(--font-weight-medium);
+    padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1.8);
+    background-color: rgba(209, 190, 173, 0.15);
     color: var(--color-accent);
-    border-radius: var(--border-radius);
-    transition: all var(--transition-speed) ease;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(209, 190, 173, 0.2);
 }
 
 .keyword-tag:hover {
-    background-color: var(--color-accent);
-    color: var(--color-background);
+    background: var(--gradient-accent);
+    color: #FFF;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .intro-cta {
@@ -632,72 +714,67 @@ main section:first-child {
         "coffee coffee"   /* Coffee/Map spans top row */
         "photo language" /* Photo left, Language right */
         "music music"; /* Music spans bottom row */
-    gap: calc(var(--spacing-unit) * 4);
-    margin-top: calc(var(--spacing-unit) * 5);
+    gap: calc(var(--spacing-unit) * 5);
+    margin-top: calc(var(--spacing-unit) * 6);
 }
 
 .layout-item {
-    padding: calc(var(--spacing-unit) * 3);
-    border-radius: var(--border-radius);
-    background-color: #FFFBF5; /* Apply default light coffee tint to all */
-    min-height: 150px; /* Ensure items have some min height */
-    position: relative; /* Needed for absolute positioning inside if any */
-    overflow: hidden; /* Hide overflow from animations */
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Apply transition to all layout items */
+    padding: calc(var(--spacing-unit) * 3.5);
+    border-radius: var(--border-radius-lg);
+    background-color: #FFFBF5; 
+    min-height: 150px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    border: 1px solid rgba(224, 218, 211, 0.5);
+    box-shadow: var(--shadow-sm);
 }
 
 .layout-item:hover {
-    transform: translateY(-3px); /* Subtle lift */
-    box-shadow: 0 5px 12px rgba(0,0,0,0.07); /* Subtle shadow */
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(224, 218, 211, 0.8);
 }
 
 /* Assign grid areas */
-.coffee-item { grid-area: coffee; padding: 0; } /* Remove padding from container */
-.photo-item { grid-area: photo; }
+.coffee-item { 
+    grid-area: coffee; 
+    padding: 0; 
+    background: linear-gradient(135deg, #FFFBF7 0%, #F5F1E9 100%);
+}
+.photo-item { 
+    grid-area: photo; 
+    background: linear-gradient(135deg, #FFFBF7 0%, #F2EFE8 100%);
+}
 .language-item { 
     grid-area: language; 
-    display: flex; /* Make it a flex container */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: flex-start; /* Align content to top */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, #FFFBF7 0%, #F2EFE8 100%);
 }
 .indie-music-item { 
-    grid-area: music; 
-    display: flex; /* Enable flexbox */
-    gap: calc(var(--spacing-unit) * 4); /* Increased gap slightly */
-    align-items: flex-start; /* Align items to top again */
-    padding: calc(var(--spacing-unit) * 3); /* Re-add padding since it's a layout item */
-    background-color: #FFFBF5; /* Ensure background color */
-    border-radius: var(--border-radius); /* Ensure border radius */
-}
-
-.music-text-content {
-    flex: 1; /* Allow text content to take remaining space */
-}
-
-.music-image-content {
-    flex-basis: 45%; /* Increased basis significantly */
-    /* max-width: 280px; Removed max-width for now */
-    margin-top: 0; /* Keep removed top margin */
-}
-
-.cello-image {
-    width: 100%;
-    height: auto;
-    border-radius: var(--border-radius);
-    display: block;
+    grid-area: music;
+    display: flex;
+    gap: calc(var(--spacing-unit) * 5);
+    align-items: flex-start;
+    background: linear-gradient(135deg, #FFFBF7 0%, #F2EFE8 100%);
 }
 
 /* Coffee Item Internal Layout */
 .coffee-map-container {
     display: flex;
     background-color: transparent; /* Remove background from container */
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
 }
 
 .coffee-text {
     flex: 1; /* Text takes up available space */
-    padding: calc(var(--spacing-unit) * 3); /* Add padding back to text */
+    padding: calc(var(--spacing-unit) * 3.5); /* Add padding back to text */
     background-color: #FFFBF5; /* Apply bg to text part */
-    border-radius: var(--border-radius) 0 0 var(--border-radius); /* Round left corners */
+    border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg); /* Round left corners */
 }
 
 .coffee-map {
@@ -705,17 +782,18 @@ main section:first-child {
     min-width: 250px;
     height: auto; /* Let height be determined by content/aspect ratio */
     min-height: 350px; /* Ensure map has decent height */
-    border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Round right corners */
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0; /* Round right corners */
     overflow: hidden; /* Clip map to rounded corners */
     z-index: 0;
 }
 
 .layout-item h3 {
-    font-size: 1.3rem; /* Slightly larger headings */
+    font-family: var(--font-display);
+    font-size: 1.4rem; /* Slightly larger headings */
     margin-top: 0;
-    margin-bottom: calc(var(--spacing-unit) * 2.5);
+    margin-bottom: calc(var(--spacing-unit) * 3);
     color: var(--color-text);
-    font-weight: 600;
+    font-weight: var(--font-weight-medium);
 }
 
 .layout-item p {
@@ -727,7 +805,7 @@ main section:first-child {
 
 .layout-item p strong {
     color: var(--color-text);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
 }
 
 .subtle-heading {
@@ -750,20 +828,22 @@ main section:first-child {
 
 .tag-list li a {
     display: inline-block;
-    padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1.5);
-    background-color: rgba(160, 82, 45, 0.1); /* Light coffee bg */
+    padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1.8);
+    background-color: rgba(209, 190, 173, 0.15);
     color: var(--color-accent);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-sm);
     font-size: 0.85rem;
-    font-weight: 500;
-    transition: all var(--transition-speed) ease;
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s ease;
     text-decoration: none;
+    border: 1px solid rgba(209, 190, 173, 0.2);
 }
 
 .tag-list li a:hover {
-    background-color: var(--color-accent);
-    color: var(--color-background);
-    transform: translateY(-1px);
+    background: var(--gradient-accent);
+    color: #FFF;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Language List Style */
@@ -912,14 +992,16 @@ main section:first-child {
 }
 
 .lang-tag {
-    display: inline-block; /* Needed for padding/margin */
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.9em; /* Slightly smaller than surrounding text */
-    font-weight: 500;
-    margin: 0 4px 4px 0; /* Added right and bottom margin */
-    color: var(--color-text); /* Default text color */
-    white-space: nowrap; /* Prevent tags from breaking internally */
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9em;
+    font-weight: var(--font-weight-medium);
+    margin: 0 4px 4px 0;
+    color: var(--color-text);
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 /* --- Contact Section Links --- */
@@ -1039,20 +1121,20 @@ main section:first-child {
 
 /* Creative Ordered List Styling */
 .band-list-ordered {
-    list-style: none; /* Remove default numbers */
-    counter-reset: band-counter; /* Start a counter */
-    padding-left: 0; /* Remove default padding */
-    margin-top: calc(var(--spacing-unit) * 2);
-    margin-bottom: calc(var(--spacing-unit) * 2);
+    list-style: none;
+    counter-reset: band-counter;
+    padding-left: 0;
+    margin-top: calc(var(--spacing-unit) * 2.5);
+    margin-bottom: calc(var(--spacing-unit) * 2.5);
 }
 
 .band-list-ordered li {
-    counter-increment: band-counter; /* Increment the counter for each item */
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    counter-increment: band-counter;
+    margin-bottom: calc(var(--spacing-unit) * 2);
     position: relative;
-    padding-left: calc(var(--spacing-unit) * 4); /* Space for the custom number */
+    padding-left: calc(var(--spacing-unit) * 4.5);
     font-size: 0.95rem;
-    color: var(--color-text-muted);
+    color: var(--color-text);
     line-height: 1.5;
 }
 
@@ -1060,15 +1142,217 @@ main section:first-child {
     content: counter(band-counter);
     position: absolute;
     left: 0;
-    top: 0;
-    font-weight: 600;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: var(--font-weight-semibold);
     font-size: 0.9rem;
-    color: var(--color-background);
-    background-color: var(--color-accent-light);
+    color: #FFF;
+    background: var(--gradient-accent);
     border-radius: 50%;
-    width: calc(var(--spacing-unit) * 2.5);
-    height: calc(var(--spacing-unit) * 2.5);
-    line-height: calc(var(--spacing-unit) * 2.5);
+    width: calc(var(--spacing-unit) * 3);
+    height: calc(var(--spacing-unit) * 3);
+    line-height: calc(var(--spacing-unit) * 3);
     text-align: center;
     display: inline-block;
+    box-shadow: var(--shadow-sm);
+}
+
+.band-list-ordered li a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    display: inline;
+    font-weight: var(--font-weight-medium);
+}
+
+.band-list-ordered li a:hover {
+    color: var(--color-accent);
+}
+
+/* Tag List Style (Used for Coffee Shops) */
+.tag-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-unit);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit);
+}
+
+.tag-list li a {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1.8);
+    background-color: rgba(209, 190, 173, 0.15);
+    color: var(--color-accent);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(209, 190, 173, 0.2);
+}
+
+.tag-list li a:hover {
+    background: var(--gradient-accent);
+    color: #FFF;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Language Tags */
+.lang-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9em;
+    font-weight: var(--font-weight-medium);
+    margin: 0 4px 4px 0;
+    color: var(--color-text);
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* CTA Buttons */
+.cta-button {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3.5);
+    background: var(--gradient-accent);
+    color: #FFF;
+    border-radius: var(--border-radius);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.01em;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    color: #FFF;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(209, 190, 173, 0.1);
+    color: var(--color-accent);
+    border-color: var(--color-accent-secondary);
+    transform: translateY(-2px);
+}
+
+/* Updated language tag specific colors */
+.lang-tag.lang-en { 
+    background: linear-gradient(135deg, #e0f2fe 0%, #cae6fc 100%);
+}
+.lang-tag.lang-zh { 
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+}
+.lang-tag.lang-ms { 
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+}
+.lang-tag.lang-yue { 
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+.lang-tag.lang-hak { 
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background: var(--gradient-accent);
+    color: #FFF;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    z-index: 99;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Subtle Section Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main section {
+    animation: fadeInUp 0.7s ease forwards;
+    opacity: 0;
+    animation-delay: 0.1s;
+}
+
+/* Staggered animations for grid items */
+.layout-item:nth-child(1) {
+    animation: fadeInUp 0.7s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.layout-item:nth-child(2) {
+    animation: fadeInUp 0.7s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+.layout-item:nth-child(3) {
+    animation: fadeInUp 0.7s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+}
+
+.layout-item:nth-child(4) {
+    animation: fadeInUp 0.7s ease forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+/* Adjust h2::after for all section headings */
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent-light);
+    margin-top: calc(var(--spacing-unit) * 1.5);
+}
+
+/* Center alignment for h2::after when the heading is centered */
+.text-center h2::after {
+    margin-left: auto;
+    margin-right: auto;
 }
