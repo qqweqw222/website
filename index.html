@@ -27,9 +27,9 @@
                     <ul>
                         <li><a href="#intro" class="active">Home</a></li>
                         <li><a href="#belief">Beliefs</a></li>
-                        <li><a href="#experience">Exp.</a></li>
+                        <li><a href="#experience">Experience</a></li>
                         <li><a href="#who-i-am">Who I Am</a></li>
-                        <li><a href="#thinking">Blogs</a></li>
+                        <li><a href="#thinking">Thinking</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
             <div class="container intro-content">
                 <div class="intro-text">
                     <span class="wave">👋</span>
-                    <h1>Hi, I'm Aspen – Malaysian roots, Shanghai based. Fueled by coffee and fascination for AI products.</h1>
+                    <h1>Hey, I'm Aspen — Malaysian-born and based in Shanghai. Hit me up if you wanna chat!</h1>
                     <div class="intro-keywords">
                         <a href="#" class="keyword-tag">#AI</a>
                         <a href="#" class="keyword-tag">#Coffee</a>
@@ -172,7 +172,7 @@
                             <!-- SJTU -->
                             <div class="timeline-item">
                                 <span class="timeline-date">2021 - 2025</span>
-                                <h4 class="timeline-title">B.Econ, Finance & Business Adminstration (Marketing))</h4>
+                                <h4 class="timeline-title">B.Econ, Finance & Business Adminstration (Marketing)</h4>
                                 <p class="timeline-company">Antai College of Economics and Management, Shanghai Jiao Tong University</p>
                             </div>
                              <!-- Kuen Cheng -->
@@ -235,7 +235,7 @@
                     <!-- Taiwanese Indie Music Item (Bottom Right) -->
                     <div class="layout-item indie-music-item" style="display: flex; gap: var(--spacing-unit) * 3; align-items: flex-start;"> <!-- Added inline flex styles for now -->
                         <div class="music-text-content" style="flex: 1;"> <!-- Wrapper for text, flex-grow -->
-                            <h3>🎵 Taiwanese Indie Music Fan</h3>
+                            <h3>🎵 Weebs & Indie Music</h3>
                             <p>I love Taiwanese indie music! ⬇️ Here are five bands currently on repeat (Click on the links to listen if you want to!):</p> <!-- Updated caption -->
                             <!-- Changed to OL for styled list -->
                             <ol class="band-list-ordered">
@@ -313,6 +313,13 @@
         </div>
     </footer>
 
+    <!-- Added Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
     <!-- Photo Modal Structure -->
     <div id="photo-modal" class="modal-overlay">
         <span class="modal-close" id="modal-close-btn">&times;</span>
@@ -328,7 +335,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // --- Map Setup ---
-            const map = L.map('map').setView([31.2304, 121.4737], 13); // Coordinates for Shanghai center, zoom level 13
+            // Initialize map without setting the view yet
+            const map = L.map('map');
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -365,16 +373,21 @@
             ];
 
             // --- Add Markers ---
+            const markers = [];
             cafes.forEach(cafe => {
                 const marker = L.marker(cafe.coords).addTo(map);
                 marker.bindPopup(`<b>${cafe.name}</b><br><a href="${cafe.link}" target="_blank">View on Dianping</a>`);
+                markers.push(marker);
             });
 
-            // Optional: Adjust map bounds to fit markers
-            // const group = new L.featureGroup(cafes.map(c => L.marker(c.coords)));
-            // if (group.getLayers().length > 0) {
-            //    map.fitBounds(group.getBounds().pad(0.3)); // pad adds some margin
-            // }
+            // Create a feature group from all markers and fit the map to their bounds
+            if (markers.length > 0) {
+                const group = L.featureGroup(markers);
+                map.fitBounds(group.getBounds().pad(0.2)); // pad adds 20% margin
+            } else {
+                // Fallback to default view if no markers
+                map.setView([31.2304, 121.4737], 13);
+            }
         });
 
         // --- Photo Slider & Modal Logic ---
@@ -488,6 +501,47 @@
              });
 
         });
+
+        // --- Header Scroll Effect ---
+        // Function to handle header appearance on scroll
+        function handleHeaderScroll() {
+            const header = document.querySelector('.main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        // Back to Top Button Logic
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        function handleBackToTopVisibility() {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }
+        
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Handle visibility on scroll
+            window.addEventListener('scroll', handleBackToTopVisibility);
+            // Initial check
+            handleBackToTopVisibility();
+        }
+        
+        // Add scroll event listeners
+        window.addEventListener('scroll', handleHeaderScroll);
+        // Initial call
+        handleHeaderScroll();
 
     </script>
 
