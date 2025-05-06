@@ -485,7 +485,8 @@ main section:first-child {
             "coffee"
             "photo"
             "language"
-            "music"; /* Updated grid area */
+            "music"
+            "spotify"; /* Added spotify area */
         gap: calc(var(--spacing-unit) * 3);
     }
 
@@ -526,6 +527,11 @@ main section:first-child {
     }
     .band-list-ordered {
         text-align: left; /* Keep list text left-aligned */
+    }
+
+    /* Spotify iframe height on mobile */
+    .spotify-embed-container iframe {
+        height: 380px; /* Slightly taller on mobile for better visibility */
     }
 }
 
@@ -713,7 +719,8 @@ main section:first-child {
     grid-template-areas:
         "coffee coffee"   /* Coffee/Map spans top row */
         "photo language" /* Photo left, Language right */
-        "music music"; /* Music spans bottom row */
+        "music music"    /* Music spans full width */
+        "spotify spotify"; /* Spotify spans full width */
     gap: calc(var(--spacing-unit) * 5);
     margin-top: calc(var(--spacing-unit) * 6);
 }
@@ -758,6 +765,11 @@ main section:first-child {
     display: flex;
     gap: calc(var(--spacing-unit) * 5);
     align-items: flex-start;
+    background: linear-gradient(135deg, #FFFBF7 0%, #F2EFE8 100%);
+}
+
+.spotify-item {
+    grid-area: spotify;
     background: linear-gradient(135deg, #FFFBF7 0%, #F2EFE8 100%);
 }
 
@@ -866,7 +878,8 @@ main section:first-child {
         grid-template-areas:
             "coffee coffee"   /* Coffee spans full width */
             "photo language"  /* Photo and Language side-by-side */
-            "personal personal";/* Personal spans full width */
+            "music music"     /* Music spans full width */
+            "spotify spotify"; /* Spotify spans full width */
     }
 }
 
@@ -877,7 +890,8 @@ main section:first-child {
             "coffee"
             "photo"
             "language"
-            "music";
+            "music"
+            "spotify"; /* Added spotify area */
         gap: calc(var(--spacing-unit) * 3);
     }
 
@@ -1355,4 +1369,18 @@ h2::after {
 .text-center h2::after {
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Spotify embed container styling */
+.spotify-embed-container {
+    margin-top: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spotify-embed-container:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
