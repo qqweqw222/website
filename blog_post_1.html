@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflections on Growth and Imperfection | Aspen C.</title> <!-- Blog Post Title -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="icon.png">
+    <!-- Add Leaflet CSS (might not be needed, but keep for consistency?) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Add Leaflet JS (might not be needed, but keep for consistency?) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+</head>
+<body class="blog-page">
+
+    <header class="main-header blog-header"> <!-- Add class for potential specific styling -->
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <a href="index.html"> <!-- Link back to home -->
+                        <span class="logo-icon">A</span> 
+                        Aspen C.
+                    </a>
+                </div>
+                <!-- Minimal nav for blog post, could add main nav back if preferred -->
+            </nav>
+        </div>
+    </header>
+
+    <main class="blog-post-container">
+        <article class="container narrow"> <!-- Narrow container for readability -->
+            <header class="blog-post-header">
+                <h1 class="blog-title">A Semester of Closure, Not Conclusion</h1>
+                <p class="post-meta">By Aspen C. | Published: May 6, 2025</p> <!-- Added author and date -->
+                <div class="title-separator"></div> 
+            </header>
+            
+            <section class="blog-content">
+                <p>As I approach the end of my final semester as an undergraduate student in China, I find myself reflecting deeply upon this meaningful and formative chapter of my life. Studying abroad has been an enriching and profoundly interesting experience, shaping my perspective and continuously motivating me to seize every opportunity to broaden my horizons and engage with diverse ideas and inspiring people.</p>
+                
+                <img src="blog1.jpeg" alt="Reflective image related to study abroad experience" class="blog-image full-width" style="max-width: 60%; margin-left: auto; margin-right: auto;"> <!-- Centered and halved -->
+                
+                <p>Throughout my undergraduate journey, I have engaged in a multitude of experiences—internships, research projects, extracurricular activities, competitions, and leadership roles within various student organizations. On the surface, these achievements represent substantial personal growth and significant milestones. Recently, however, I encountered a setback during the selection process for the Outstanding International Undergraduate Student Award. Initially nominated by my department as the top candidate, I advanced to compete at the university level, where only 17 out of 20 exceptional students were ultimately selected. Unfortunately, I was one of the three students eliminated, simply due to a record of academic shortcomings—specifically, failing few courses earlier in my undergraduate years.</p>
+                
+                <p>This incident led me to contemplate deeply about how success is perceived within the educational systems of China, and more broadly, across East Asia. Here, academic excellence, often represented narrowly by grades, dominates as the singular standard by which students are judged. It feels as though anything less than perfection, a straight "A" record, relegates one immediately into a category of inadequacy or perceived failure. Even if one excels in multiple dimensions—internships, leadership, extracurricular pursuits—these factors frequently hold less weight compared to traditional academic performance.</p>
+                
+                <figure class="blog-figure side-float-right" style="max-width: 40%;"> <!-- Reduced width, still floating right -->
+                    <img src="blog2.jpeg" alt="Two other award recipients from the faculty" class="blog-image"> <!-- No specific class needed here, .blog-image takes care of basics -->
+                </figure>
+                
+                <p>Despite receiving multiple graduate school offers from prestigious universities worldwide and gaining recognition from various mentors and peers, the lack of a perfect academic transcript was enough to overshadow my diverse accomplishments. Initially, this deeply frustrated and perplexed me. I questioned the fairness and comprehensiveness of such evaluation criteria. How could it be that excelling broadly yet faltering slightly in one domain diminishes an individual's entire academic journey?</p>
+                
+                <p>However, after experiencing disappointment, I woke up the next morning with a clearer mind. The award, while symbolically meaningful, would not fundamentally alter my future trajectory or the essence of what I have accomplished. Ultimately, it was intended as a personal milestone, a symbolic capstone to summarize and acknowledge my undergraduate journey. But the absence of this acknowledgment does not negate the reality of my efforts and achievements. I know how much effort and passion I have poured into my undergraduate life, and when I reflect upon it earnestly, I can confidently say I have given it my all. I have worked diligently and fought passionately.</p>
+                
+                <p>Adjusting one's mindset following setbacks is crucial. As Viktor Frankl wisely observed, <blockquote>"When we are no longer able to change a situation, we are challenged to change ourselves."</blockquote> Therefore, moving forward, I choose to step beyond the restrictive confines of a student's mindset, redirecting my attention toward aspects genuinely deserving my energy and focus—completing my graduation thesis with excellence, maximizing the value of my current internship, and thoughtfully preparing for my upcoming journey into graduate studies and beyond.</p>
+                
+                <p>In the end, awards and external validations are ephemeral. True significance lies in our continuous pursuit of growth, resilience, and unwavering commitment to our passions and principles. This, perhaps, is the most profound lesson I've learned from this experience.</p>
+                
+            </section>
+        </article>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Aspen C. All rights reserved. | Built with ❤️ and supported by Cursor, Gemini & ChatGPT.</p>
+        </div>
+    </footer>
+    
+    <!-- Add Back to Top Button (optional, can reuse JS) -->
+     <button id="back-to-top" aria-label="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+    
+    <script>
+         // Simple JS for Back to Top (can reuse if needed)
+         document.addEventListener('DOMContentLoaded', function () {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            function handleBackToTopVisibility() {
+                 if (!backToTopButton) return; // Check if button exists
+                 if (window.scrollY > 500) {
+                     backToTopButton.classList.add('visible');
+                 } else {
+                     backToTopButton.classList.remove('visible');
+                 }
+            }
+            
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                window.addEventListener('scroll', handleBackToTopVisibility);
+                handleBackToTopVisibility(); // Initial check
+            }
+            
+             // Header scroll effect (optional for blog page)
+             function handleHeaderScroll() {
+                const header = document.querySelector('.main-header');
+                 if (!header) return;
+                 if (window.scrollY > 50) {
+                     header.classList.add('scrolled');
+                 } else {
+                     header.classList.remove('scrolled');
+                 }
+            }
+             window.addEventListener('scroll', handleHeaderScroll);
+             handleHeaderScroll(); // Initial check
+         });
+    </script>
+
+</body>
+</html> 
