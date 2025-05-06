@@ -682,11 +682,20 @@ main section:first-child {
 
 .thinking-image {
     height: 180px; /* Fixed height for images */
-    background-color: var(--color-border); /* Placeholder bg */
-    background-size: cover;
-    background-position: center;
+    width: 100%; /* Ensure it takes full width of its container */
+    object-fit: cover; /* Make the image cover the area, cropping if needed */
+    object-position: center; /* Center the image within its box */
+    background-color: var(--color-border); /* Placeholder bg - might be less relevant for img tags */
+    /* background-size: cover; Remove this, use object-fit */
+    /* background-position: center; Remove this, use object-position */
     /* Add specific placeholder styles */
 }
+
+/* Specific adjustment for the first blog preview image */
+.thinking-grid .thinking-block:first-child .thinking-image {
+    object-position: center top; /* Focus on the top-center of the image */
+}
+
 .thinking-image.placeholder-1 { background-color: #e0e7ff; } /* Example placeholder colors */
 .thinking-image.placeholder-2 { background-color: #f3e8ff; }
 .thinking-image.placeholder-3 { background-color: #ffe4e6; }
@@ -1383,4 +1392,152 @@ h2::after {
 .spotify-embed-container:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
+}
+
+/* --- Blog Post Specific Styles --- */
+/* .blog-page .main-header { */
+    /* No specific styles needed currently beyond .main-header */
+/* } */
+
+.blog-post-container {
+    padding-top: calc(var(--spacing-unit) * 10); /* Space below header */
+    padding-bottom: calc(var(--spacing-unit) * 10);
+    background: var(--color-background);
+}
+
+.container.narrow {
+    max-width: 760px; /* Optimal reading width */
+}
+
+.blog-post-header {
+    margin-bottom: calc(var(--spacing-unit) * 6);
+    text-align: center; /* Center title and meta */
+}
+
+.blog-title {
+    font-size: 2.8rem;
+    font-family: var(--font-display);
+    color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    letter-spacing: -0.02em;
+}
+
+.title-separator {
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-accent);
+    margin: calc(var(--spacing-unit) * 3) auto 0 auto; /* Center the separator */
+    border-radius: 2px;
+}
+
+.blog-content p {
+    font-family: var(--font-primary);
+    font-size: 1.05rem; /* Slightly larger body text */
+    line-height: 1.9; /* Generous line height */
+    color: var(--color-text);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.blog-content blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--color-accent);
+    padding-left: calc(var(--spacing-unit) * 3);
+    margin: calc(var(--spacing-unit) * 4) 0;
+    border-left: 3px solid var(--color-accent-light);
+    line-height: 1.6;
+}
+
+.post-meta {
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: calc(var(--spacing-unit) * 1.5);
+    margin-bottom: calc(var(--spacing-unit) * 0.5); /* Reduced margin below meta */
+}
+
+.blog-image {
+    margin-top: calc(var(--spacing-unit) * 3);
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    border-radius: var(--border-radius);
+    /* background-color: var(--color-subtle-bg); */ /* No longer needed for actual images */
+    border: 1px solid var(--color-border);
+    max-width: 100%; /* Ensure images are responsive by default */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+}
+
+.blog-image.full-width {
+    width: 100%;
+}
+
+.blog-image.side-float-right {
+    float: right;
+    margin-left: calc(var(--spacing-unit) * 3);
+    margin-top: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    max-width: 45%; /* Adjust width as needed */
+    /* Ensure float works on mobile or stacks */
+}
+
+/* Clear floats after side images if needed */
+.blog-content section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive adjustments for blog */
+@media (max-width: 768px) {
+    .blog-title {
+        font-size: 2rem;
+    }
+    .post-meta {
+        font-size: 0.85rem;
+    }
+    .blog-content p {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+    .blog-image.full-width {
+        max-width: 100% !important; /* Ensure it takes full width if previously halved */
+    }
+    .blog-figure.side-float-right {
+        float: none;
+        max-width: 100%; /* Take full width on mobile */
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: calc(var(--spacing-unit) * 2);
+        margin-bottom: calc(var(--spacing-unit) * 2);
+    }
+     .blog-figure.side-float-right img {
+        max-width: 100%; /* Ensure image within figure is responsive */
+    }
+}
+
+.blog-figure {
+    margin: 0; /* Reset default figure margins */
+    padding: 0;
+}
+
+.blog-figure.side-float-right {
+    float: right;
+    margin-left: calc(var(--spacing-unit) * 3);
+    margin-top: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    /* max-width: 45%; Original width, now controlled by inline style */
+    /* Ensure float works on mobile or stacks */
+}
+
+.image-caption {
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: var(--spacing-unit);
+    font-style: italic;
 }
