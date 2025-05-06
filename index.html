@@ -29,7 +29,7 @@
                         <li><a href="#belief">Beliefs</a></li>
                         <li><a href="#experience">Exp.</a></li>
                         <li><a href="#who-i-am">Who I Am</a></li>
-                        <li><a href="#thinking">Thinking</a></li>
+                        <li><a href="#thinking">Blog</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -235,8 +235,8 @@
                     <!-- Taiwanese Indie Music Item (Bottom Right) -->
                     <div class="layout-item indie-music-item" style="display: flex; gap: var(--spacing-unit) * 3; align-items: flex-start;"> <!-- Added inline flex styles for now -->
                         <div class="music-text-content" style="flex: 1;"> <!-- Wrapper for text, flex-grow -->
-                            <h3>🎵 Weebs & Indie Music</h3>
-                            <p>I love Taiwanese indie music! ⬇️ Here are five bands currently on repeat (Click on the links to listen if you want to!):</p> <!-- Updated caption -->
+                            <h3>🎵 Taiwanese Indie Music Fan</h3>
+                            <p>I loove Taiwanese indie music! ⬇️ Here are 5 bands I've got on repeat—click to listen!</p> <!-- Updated caption -->
                             <!-- Changed to OL for styled list -->
                             <ol class="band-list-ordered">
                                <li><a href="https://www.youtube.com/watch?v=O3r_2ulkuKY&ab_channel=decajoins" target="_blank">deca joins</a> 🔗</li>
@@ -253,6 +253,15 @@
                             <img src="cello.jpeg" alt="Cello illustration or photo" class="cello-image" style="width: 100%; height: auto; border-radius: var(--border-radius);">
                         </div>
                         
+                    </div>
+
+                    <!-- Spotify Playlist Item -->
+                    <div class="layout-item spotify-item">
+                        <h3>🎧 My Spotify Vibes</h3>
+                        <p>Curious what I'm listening to? Here's my current rotation—genre's a bit all over the place, I like variety!</p>
+                        <div class="spotify-embed-container">
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EprprgLL1VI2A?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
                     </div>
 
                 </div>
@@ -276,7 +285,7 @@
                     <a href="#" target="_blank" class="thinking-block">
                         <div class="thinking-image placeholder-2"></div>
                          <div class="thinking-content">
-                            <h4>My Coffee Journey: From Beans to Brew</h4>
+                            <h4>What should I write about?</h4>
                             <span class="coming-soon">Coming Soon</span>
                         </div>
                     </a>
@@ -334,9 +343,9 @@
     <!-- Leaflet Map Initialization Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // --- Map Setup ---
-            // Initialize map without setting the view yet
-            const map = L.map('map');
+            // --- Map Setup --- 
+            // const map = L.map('map').setView([31.2304, 121.4737], 13); // REMOVED fixed view
+            const map = L.map('map'); // Initialize map without setting view yet
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
@@ -373,21 +382,142 @@
             ];
 
             // --- Add Markers ---
-            const markers = [];
             cafes.forEach(cafe => {
                 const marker = L.marker(cafe.coords).addTo(map);
                 marker.bindPopup(`<b>${cafe.name}</b><br><a href="${cafe.link}" target="_blank">View on Dianping</a>`);
-                markers.push(marker);
             });
 
-            // Create a feature group from all markers and fit the map to their bounds
-            if (markers.length > 0) {
-                const group = L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.2)); // pad adds 20% margin
-            } else {
-                // Fallback to default view if no markers
-                map.setView([31.2304, 121.4737], 13);
+            // Optional: Adjust map bounds to fit markers
+            const group = new L.featureGroup(cafes.map(c => L.marker(c.coords))); // UNCOMMENTED
+            if (group.getLayers().length > 0) {
+               map.fitBounds(group.getBounds().pad(0.2)); // UNCOMMENTED and slightly reduced padding
             }
+
+            // --- Active Nav Link Highlighting on Scroll --- 
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const header = document.querySelector('.main-header'); // Get header element
+            // Function to get header height dynamically
+            const getHeaderHeight = () => header?.offsetHeight || 80;
+
+            function updateActiveLink() {
+                let currentSectionId = '';
+                // Adjust offset: consider header height and add a small buffer (e.g., 10px) below the header
+                const scrollThreshold = window.scrollY + getHeaderHeight() + 10;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    // Check if the top of the section is within the threshold
+                    if (scrollThreshold >= sectionTop && scrollThreshold < sectionTop + sectionHeight) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                
+                 // If no section is actively within the threshold (e.g., between sections), check which one is closest to the top
+                 if (!currentSectionId && sections.length > 0) {
+                    let closestSection = sections[0];
+                    let minDistance = Math.abs(scrollThreshold - closestSection.offsetTop);
+
+                    sections.forEach(section => {
+                        const distance = Math.abs(scrollThreshold - section.offsetTop);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestSection = section;
+                        }
+                    });
+                    // Check if near the very top, default to first section if so
+                    if (window.scrollY < sections[0].offsetTop - getHeaderHeight()) {
+                        currentSectionId = sections[0].getAttribute('id');
+                    } else {
+                         currentSectionId = closestSection.getAttribute('id');
+                    }
+                 }
+
+                // Special case for reaching the bottom (highlight Contact)
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                       currentSectionId = 'contact'; 
+                    }
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // --- Handle Click Events on Nav Links ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    // Remove active class from all links immediately
+                    navLinks.forEach(lnk => lnk.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                    
+                    // Optional: Smooth scroll - uncomment if browser default isn't smooth enough
+                    /* 
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        event.preventDefault(); // Prevent default jump
+                        const scrollToY = targetSection.offsetTop - getHeaderHeight();
+                        window.scrollTo({
+                            top: scrollToY,
+                            behavior: 'smooth'
+                        });
+                    }
+                    */
+                });
+            });
+
+            // Initial call & scroll listener remain the same
+            updateActiveLink();
+            window.addEventListener('scroll', updateActiveLink);
+
+            // --- Header Scroll Effect ---
+            // Function to handle header appearance on scroll
+            function handleHeaderScroll() {
+                const header = document.querySelector('.main-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            // Back to Top Button Logic
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            function handleBackToTopVisibility() {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            }
+            
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // Handle visibility on scroll
+                window.addEventListener('scroll', handleBackToTopVisibility);
+                // Initial check
+                handleBackToTopVisibility();
+            }
+            
+            // Add scroll event listeners
+            window.addEventListener('scroll', handleHeaderScroll);
+            // Initial call
+            handleHeaderScroll();
         });
 
         // --- Photo Slider & Modal Logic ---
@@ -501,47 +631,6 @@
              });
 
         });
-
-        // --- Header Scroll Effect ---
-        // Function to handle header appearance on scroll
-        function handleHeaderScroll() {
-            const header = document.querySelector('.main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        }
-        
-        // Back to Top Button Logic
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        function handleBackToTopVisibility() {
-            if (window.scrollY > 500) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        }
-        
-        if (backToTopButton) {
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Handle visibility on scroll
-            window.addEventListener('scroll', handleBackToTopVisibility);
-            // Initial check
-            handleBackToTopVisibility();
-        }
-        
-        // Add scroll event listeners
-        window.addEventListener('scroll', handleHeaderScroll);
-        // Initial call
-        handleHeaderScroll();
 
     </script>
 
