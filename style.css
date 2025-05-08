@@ -1432,23 +1432,142 @@ h2::after {
     border-radius: 2px;
 }
 
+/* Journal-like blog styling */
+.blog-content {
+    font-family: var(--font-primary);
+}
+
 .blog-content p {
     font-family: var(--font-primary);
     font-size: 1.05rem; /* Slightly larger body text */
     line-height: 1.9; /* Generous line height */
     color: var(--color-text);
     margin-bottom: calc(var(--spacing-unit) * 3);
+    /* Enhanced readability characteristics */
+    letter-spacing: 0.01em;
+    text-align: justify;
+    hyphens: auto;
 }
 
+/* Refined drop cap styling */
+.blog-content p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 3.6em;
+    line-height: 0.8;
+    padding-top: 6px;
+    padding-right: 12px;
+    padding-left: 0;
+    margin-bottom: 0;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Lead paragraph - for the opening paragraph */
+.blog-content p.lead {
+    font-size: 1.15rem;
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Section divider for visual breaks */
+.section-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: calc(var(--spacing-unit) * 5) 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.section-divider::before {
+    margin-right: calc(var(--spacing-unit) * 2);
+}
+
+.section-divider::after {
+    margin-left: calc(var(--spacing-unit) * 2);
+}
+
+.section-divider span {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    padding: 0 calc(var(--spacing-unit) * 1.5);
+}
+
+/* Pull quotes styled like journals */
 .blog-content blockquote {
+    position: relative;
     font-family: var(--font-display);
     font-style: italic;
     font-size: 1.3rem;
     color: var(--color-accent);
-    padding-left: calc(var(--spacing-unit) * 3);
-    margin: calc(var(--spacing-unit) * 4) 0;
-    border-left: 3px solid var(--color-accent-light);
+    padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 4);
+    margin: calc(var(--spacing-unit) * 5) 0;
+    border-left: none;
     line-height: 1.6;
+    text-align: center;
+    background-color: var(--color-subtle-bg);
+    border-radius: var(--border-radius);
+}
+
+.blog-content blockquote::before,
+.blog-content blockquote::after {
+    content: '"';
+    position: absolute;
+    font-size: 3rem;
+    color: var(--color-accent-light);
+    opacity: 0.7;
+    line-height: 1;
+}
+
+.blog-content blockquote::before {
+    top: 5px;
+    left: 10px;
+}
+
+.blog-content blockquote::after {
+    bottom: -15px;
+    right: 10px;
+}
+
+/* Subtitles within blog posts */
+.blog-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: var(--font-weight-semibold);
+    margin-top: calc(var(--spacing-unit) * 6);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+}
+
+.blog-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+    margin-top: calc(var(--spacing-unit) * 4);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--color-accent);
+}
+
+/* List styling for blogs */
+.blog-content ul, 
+.blog-content ol {
+    margin-bottom: calc(var(--spacing-unit) * 3);
+    padding-left: calc(var(--spacing-unit) * 4);
+}
+
+.blog-content li {
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    color: var(--color-text);
+    line-height: 1.8;
 }
 
 .post-meta {
@@ -1457,37 +1576,48 @@ h2::after {
     color: var(--color-text-muted);
     margin-top: calc(var(--spacing-unit) * 1.5);
     margin-bottom: calc(var(--spacing-unit) * 0.5); /* Reduced margin below meta */
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
 }
 
+/* Image styling refinements */
 .blog-image {
     margin-top: calc(var(--spacing-unit) * 3);
     margin-bottom: calc(var(--spacing-unit) * 3);
     border-radius: var(--border-radius);
-    /* background-color: var(--color-subtle-bg); */ /* No longer needed for actual images */
     border: 1px solid var(--color-border);
     max-width: 100%; /* Ensure images are responsive by default */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Remove extra space below image */
+    box-shadow: var(--shadow-sm);
 }
 
 .blog-image.full-width {
     width: 100%;
 }
 
-.blog-image.side-float-right {
+.blog-figure {
+    margin: 0; /* Reset default figure margins */
+    padding: 0;
+}
+
+.blog-figure.side-float-right {
     float: right;
     margin-left: calc(var(--spacing-unit) * 3);
     margin-top: var(--spacing-unit);
     margin-bottom: var(--spacing-unit);
-    max-width: 45%; /* Adjust width as needed */
-    /* Ensure float works on mobile or stacks */
 }
 
-/* Clear floats after side images if needed */
-.blog-content section::after {
-    content: "";
-    display: table;
-    clear: both;
+.image-caption {
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: var(--spacing-unit);
+    font-style: italic;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-unit);
 }
 
 /* Responsive adjustments for blog */
@@ -1501,43 +1631,30 @@ h2::after {
     .blog-content p {
         font-size: 1rem;
         line-height: 1.8;
+        text-align: left; /* Justified text can look bad on mobile */
+        hyphens: none;
+    }
+    .blog-content p:first-of-type::first-letter {
+        font-size: 3.2em;
+        padding-top: 4px;
     }
     .blog-image.full-width {
-        max-width: 100% !important; /* Ensure it takes full width if previously halved */
+        max-width: 100% !important;
     }
     .blog-figure.side-float-right {
         float: none;
-        max-width: 100%; /* Take full width on mobile */
+        max-width: 100%;
         width: 100%;
         margin-left: 0;
         margin-right: 0;
         margin-top: calc(var(--spacing-unit) * 2);
         margin-bottom: calc(var(--spacing-unit) * 2);
     }
-     .blog-figure.side-float-right img {
-        max-width: 100%; /* Ensure image within figure is responsive */
+    .blog-figure.side-float-right img {
+        max-width: 100%;
     }
-}
-
-.blog-figure {
-    margin: 0; /* Reset default figure margins */
-    padding: 0;
-}
-
-.blog-figure.side-float-right {
-    float: right;
-    margin-left: calc(var(--spacing-unit) * 3);
-    margin-top: var(--spacing-unit);
-    margin-bottom: var(--spacing-unit);
-    /* max-width: 45%; Original width, now controlled by inline style */
-    /* Ensure float works on mobile or stacks */
-}
-
-.image-caption {
-    font-family: var(--font-primary);
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    text-align: center;
-    margin-top: var(--spacing-unit);
-    font-style: italic;
+    .blog-content blockquote {
+        padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
+        font-size: 1.1rem;
+    }
 }
