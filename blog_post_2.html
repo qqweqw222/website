@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Bittersweet Goodbye, A Hopeful Beginning | Aspen C.</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+</head>
+<body class="blog-page">
+
+  <header class="main-header blog-header">
+    <div class="container">
+      <nav class="main-nav">
+        <div class="logo">
+          <a href="index.html">
+            <span class="logo-icon">A</span>
+            Aspen C.
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="blog-post-container">
+    <article class="container narrow">
+      <header class="blog-post-header">
+        <h1 class="blog-title">A Bittersweet Goodbye, A Hopeful Beginning</h1>
+        <p class="post-meta">By Aspen C. | Published: Jun 30, 2025</p>
+        <div class="title-separator"></div>
+      </header>
+      <section class="blog-content">
+        <p class="lead">I walked across the stage at Shanghai Jiao Tong University last week—cap and gown lightly brushing shoulders I may never meet again. It feels surreal to write the words <em>finally graduated</em>. For an international student who has called this city home for years, that single ceremony compressed an entire era of emotion into an afternoon: joy, relief, awe, and an almost geological sadness that shifts beneath the surface.</p>
+        <img src="grad3.jpeg" alt="Graduation stage" class="blog-image full-width" style="max-width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 2.5em;"> 
+        <h3>The Compressed Chaos of Senior Year</h3>
+        <p>My final year blurred past in a carousel of subway rides and Lark notifications. I spent more hours at my internship than in any lecture hall, convinced that learning to ship real code would teach me what no textbook could. Time became a scarce currency; coffee, the universal exchange rate. In retrospect, I realize how deliberately I traded that time—each late‑night commit a small investment in the person I wanted to become.</p>
+        <div class="section-divider"><span>•</span></div>
+        <img src="grad1.jpeg" alt="Senior year chaos" class="blog-image full-width" style="max-width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 2.5em; margin-top: 2em;">
+        <h3>A Week on Pause</h3>
+        <p>For graduation week I did something radical: I pressed <em>pause</em>. I took a full week off work, shut the laptop lid, and invited my family to inhabit the moment with me. We played at being tourists in the very city that had become our routine, photographing alleys we used to rush through and tasting xiaolongbao as though it were delicacy rather than dinner. I also gathered with friends from Malaysia—friends who became kin in the crucible of shared homesickness. We laughed hard, ate louder, and admitted in quieter moments that this might be the last time our GPS coordinates overlap. The word <em>farewell</em> suddenly carried real weight.</p>
+        <h3>Gratitude in All Directions</h3>
+        <p>There is an old proverb that says, “A single tree does not make a forest.” Looking back, every mentor, barista, teammate, and taxi driver formed a canopy that sheltered my growth here. Professors challenged my assumptions; street vendors taught me the cadence of local patience; classmates modeled an intellectual ferocity I want to keep burning. Without this constellation of influences, the person typing these words would be unrecognizable.</p>
+        <h3>Choosing the Uncharted Path</h3>
+        <p>Now the story tilts forward. My internship has morphed into a full‑time offer, and I have chosen it over several prestigious graduate‑school admissions. Walking away from those academic hallways hurt—opportunity always exacts a toll—but the gravitational pull of the AI frontier feels impossible to ignore. I want to stand where algorithms meet accountability, where code confronts consequence. That’s the laboratory I need right now.</p>
+        <h3>Paperwork, Prosaic and Profound</h3>
+        <p>Of course, new chapters start with unglamorous paragraphs: work‑visa applications, apartment‑hunting, bank forms that ask the same question five different ways. It is tempting to dismiss these tasks as trivial annoyances, yet they are the scaffolding on which dreams are built. If bureaucracy is the toll booth, purpose is the open road beyond it.</p>
+        <h3>Looking Ahead with Measured Wonder</h3>
+        <p>I carry into this next season a disciplined optimism. The AI wave will not wait, and I intend to surf it with curiosity anchored by ethics. Shanghai has taught me that progress does not preclude empathy, and that ambition without gratitude stalls quickly. So here’s to the unknown—to algorithms still unwritten, friendships yet to be forged, and a city that keeps reinventing the very skyline against which we measure our hopes.</p>
+        <p>If you ever find yourself at the intersection of conclusion and inception, pause long enough to taste the air—then keep moving. There is always another horizon, and sometimes the best way to honor your past is to sprint toward it.</p>
+        <hr class="section-divider"/>
+        <p style="text-align:center; color:var(--color-text-muted); font-size:1.05em; margin-top:2em;">———</p>
+      </section>
+      <p style="text-align:center; color:var(--color-text-muted); font-size:0.98em; margin-top:2.5em; margin-bottom:0.5em;">
+        (Let’s be real: prose this smooth? No way I wrote it alone. All the ideas and stories are mine, but huge thanks to Kimi AI for helping me optimize and rewrite. 🤖✍️)
+      </p>
+    </article>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <p>&copy; 2025 Aspen C. All rights reserved. | Built with ❤️ and supported by Cursor, Gemini & ChatGPT.</p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to Top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const backToTopButton = document.getElementById('back-to-top');
+      function handleBackToTopVisibility() {
+        if (!backToTopButton) return;
+        if (window.scrollY > 500) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      }
+      if (backToTopButton) {
+        backToTopButton.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        window.addEventListener('scroll', handleBackToTopVisibility);
+        handleBackToTopVisibility();
+      }
+      function handleHeaderScroll() {
+        const header = document.querySelector('.main-header');
+        if (!header) return;
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', handleHeaderScroll);
+      handleHeaderScroll();
+    });
+  </script>
+
+</body>
+</html> 
